@@ -3,9 +3,8 @@ Nama    : Bryan Jeshua Mario Timung <br/>
 NPM     : 2206027021 <br/>
 Kelas   : PBP C <br/>
 ## Requirements
-1. Python3
-## Libraries Used
-1. Flutter
+1. Dart
+2. Flutter
 <details>
 <summary> <b> WEEK 07 </b> </summary>
 
@@ -48,4 +47,19 @@ Stateful widget
 8. Pada main.dart, saya menjadikann MyApp menjadi Stateless, mengatur colorscheme, dan membuat home menjadi MyHomePage() saja.
 9. Pada menu.dart, saya membangun kelas ShopItem dengan atribut String name, IconData icon, dan Color warna. Kemudian saya membangun class ShopCard yang merupakan StatelessWidget yang punya atribut ShopItem yang akan mengkonstruksi masing-masing ShopItem dan juga memiliki snackbar. Lalu, di kelas MyHomePage yang bersifat stateless, saya membuat list dari ShopItem yang terdiri dari menu "Lihat Item", "Tambah Item", dan "Logout". Kemudian, saya mengatur tampilan sesuai yang diinginkan, termasuk mengiterasi list  tadi.
 10. Setelah semua sudah jadi, saya melakukan  add-commit-push.
+</details>
+
+<details>
+<summary> <b> WEEK 08 </b> </summary>
+
+## Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+
+## Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+
+## Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+
+## Bagaimana penerapan clean architecture pada aplikasi Flutter?
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)
+
 </details>
