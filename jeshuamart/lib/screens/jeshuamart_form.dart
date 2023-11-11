@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jeshuamart/widget/left_drawer.dart';
-
+import 'package:jeshuamart/widget/model.dart';
+import 'package:jeshuamart/main.dart';
 class ShopFormPage extends StatefulWidget {
   const ShopFormPage({super.key});
 
@@ -10,8 +11,11 @@ class ShopFormPage extends StatefulWidget {
 
 class _ShopFormPageState extends State<ShopFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _name = "";
+  String _product_name = "";
+  int _productamount = 0;
   int _price = 0;
+  DateTime _date_in = DateTime.now();
+  String _categories = "";
   String _description = "";
   @override
   Widget build(BuildContext context) {
@@ -44,12 +48,38 @@ class _ShopFormPageState extends State<ShopFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _name = value!;
+                      _product_name = value!;
                     });
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Nama tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Jumlah",
+                    labelText: "Jumlah",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _productamount = int.parse(value!);
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Jumlah tidak boleh kosong!";
+                    }
+                    if (int.tryParse(value) == null) {
+                      return "Jumlah harus berupa angka!";
                     }
                     return null;
                   },
@@ -76,6 +106,29 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     }
                     if (int.tryParse(value) == null) {
                       return "Harga harus berupa angka!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Kategori",
+                    labelText: "Kategori",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _categories = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Kategori tidak boleh kosong!";
                     }
                     return null;
                   },
@@ -114,6 +167,15 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        Barang newProduct = Barang(
+                          productName: _product_name,
+                          productAmount: _productamount,
+                          price: _price,
+                          dateIn: _date_in,
+                          categories: _categories,
+                          description: _description,
+                        );
+                        modelList.add(newProduct);
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -123,9 +185,12 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Nama: $_name'),
+                                    Text('Nama: $_product_name'),
+                                    Text('Jumlah: $_productamount'),
                                     Text('Harga: $_price'),
-                                    Text('Deskripsi: $_description'),                                  ],
+                                    Text('Kategori: $_categories'),
+                                    Text('Deskripsi: $_description'),
+                                  ],
                                 ),
                               ),
                               actions: [
@@ -142,7 +207,6 @@ class _ShopFormPageState extends State<ShopFormPage> {
                         );
                         _formKey.currentState!.reset();
                       }
-
                     },
                     child: const Text(
                       "Save",

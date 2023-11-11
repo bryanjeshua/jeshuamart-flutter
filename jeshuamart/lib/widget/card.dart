@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:jeshuamart/screens/lihatitem.dart';
 import 'package:jeshuamart/screens/menu.dart';
+import 'package:jeshuamart/screens/jeshuamart_form.dart';
 
 class ShopCard extends StatelessWidget {
   final ShopItem item;
@@ -19,6 +20,14 @@ class ShopCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+          if (item.name == "Tambah Item") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ShopFormPage()));
+          }
+          if (item.name == "Lihat Item") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LihatItem()));
+          }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text

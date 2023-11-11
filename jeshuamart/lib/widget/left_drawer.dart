@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeshuamart/screens/lihatitem.dart';
 import 'package:jeshuamart/screens/menu.dart';
 import 'package:jeshuamart/screens/jeshuamart_form.dart';
 
@@ -59,6 +60,18 @@ class LeftDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ShopFormPage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.checklist),
+            title: const Text('Lihat Semua Produk'),
+            // Bagian redirection ke ShopFormPage
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LihatItem(),
                   ));
             },
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jeshuamart/widget/card.dart';
+import 'package:jeshuamart/widget/left_drawer.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
   final List<ShopItem> items = [
@@ -17,6 +18,7 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.indigo,
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(

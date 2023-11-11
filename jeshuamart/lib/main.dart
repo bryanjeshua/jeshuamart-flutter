@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jeshuamart/screens/menu.dart';
-
+import 'package:jeshuamart/widget/model.dart';
+List<Barang> modelList = [];
 void main() {
+
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: MyHomePage(),
+      
     );
   }
 }
