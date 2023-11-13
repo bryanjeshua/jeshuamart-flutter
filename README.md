@@ -53,13 +53,57 @@ Stateful widget
 <summary> <b> WEEK 08 </b> </summary>
 
 ## Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!
+Navigator.push() digunakan untuk menavigasi ke halaman baru di atas tumpukan navigasi saat ini. Ini cocok dipakai untuk situasi ketika ingin mempertahankan riwayat navigasi, seperti saat Anda pindah dari halaman beranda ke halaman detail. Contohnya, ketika pengguna memilih item dari daftar di halaman utama dengan menggunakan Navigator.push() untuk menampilkan halaman detail item tersebut. Setelah selesai melihat, pengguna dapat kembali ke halaman utama dengan menekan tombol kembali.
+Navigator.pushReplacement() digunakan untuk menggantikan layar saat ini di tumpukan navigasi dengan layar baru. Ini digunakan saat  tidak ingin pengguna kembali ke layar sebelumnya, misalnya setelah proses login berhasil. Contohnya, pada layar login, setelah pengguna berhasil masuk menggunakan Navigator.pushReplacement() untuk navigasi ke halaman beranda. Ini akan mencegah pengguna kembali ke layar login dengan tombol kembali.
 
 ## Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!
+Column dan Row <br>
+Fungsi: Mengatur widget secara vertikal (Column) dan horizontal (Row).
+Penggunaan: Ideal untuk membuat tata letak linier seperti formulir atau toolbar.
+
+Stack <br>
+Fungsi: Memungkinkan widget ditumpuk di atas satu sama lain.
+Penggunaan: Cocok untuk overlay, seperti teks pada gambar.
+
+Container <br>
+Fungsi: Widget serbaguna untuk pembungkus, dekorasi, dan penentuan ukuran.
+Penggunaan: Saat Anda memerlukan kotak dengan padding, margin, latar belakang, atau perubahan bentuk.
+
+GridView <br>
+Fungsi: Menampilkan widget dalam grid yang dapat di-scroll.
+Penggunaan: Untuk galeri foto atau pilihan produk.
+
+ListView <br>
+Fungsi: Menampilkan daftar item yang dapat di-scroll.
+Penggunaan: Untuk daftar email, berita, atau pengaturan.
+
+Flex dan Expanded <br>
+Fungsi: Memberikan fleksibilitas dalam tata letak dengan membagi ruang.
+Penggunaan: Ketika Anda ingin widget memiliki ukuran relatif terhadap ruang yang tersedia.
 
 ## Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!
+Pada tugas ini saya hanya menggunakan TextField karena hanya perlu input teks, seperti nama produk, jumlah produk, dan komponen serupa.
 
 ## Bagaimana penerapan clean architecture pada aplikasi Flutter?
+Clean Architecture mengatur aplikasi menjadi beberapa lapisan:
+<li>Presentation Layer: Menangani UI dan penggunaan Widget. Ini harus memiliki logika tampilan minimal.
+<li>Business Logic Layer (BLoC)/State Management: Mengelola state dan logika bisnis aplikasi.
+<li>Domain Layer: Berisi aturan bisnis dan entitas.
+<li>Data Layer: Mengatur API, penyimpanan lokal, dan repositori yang mengatur data.
+
+Langkah-langkah penerapannya:
+<li>Pisahkan kode ke dalam lapisan yang disebutkan.
+<li>Gunakan BLoC atau provider untuk state management.
+<li>Terapkan prinsip Dependency Inversion antara lapisan.
+<li>Pastikan komunikasi antar lapisan bersifat bersih dan terorganisir.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial)
+- Pertama saya membuat model.dart yang berisikan Class untuk membuat model saya.
+- Kemudian, saya membuat form yang meminta input sesuai dengan model tersebut.
+- Lalu saya membangun dialog window yang akan memunculkan apa yang sudah saya input
+- Kemudian, saya mengatur semua navigasi buttonnya ke window yang dituju
+- Pada main, saya membuat sebuah list untuk menyimpan semua model yang  sudah diinstansiasi
+- Setelah itu, saya membuat lihatitem.dart untuk menampilkan semua yang sudah diinput
+- Lalu, saya memastikan navigasi dari setiap buttonnya benar. 
 
 </details>
