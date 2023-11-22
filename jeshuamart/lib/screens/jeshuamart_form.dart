@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:jeshuamart/screens/menu.dart';
 import 'package:jeshuamart/widget/left_drawer.dart';
-import 'package:jeshuamart/widget/model.dart';
+import 'package:jeshuamart/models/model.dart';
 import 'package:jeshuamart/main.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 class ShopFormPage extends StatefulWidget {
   const ShopFormPage({super.key});
 
@@ -11,14 +16,17 @@ class ShopFormPage extends StatefulWidget {
 
 class _ShopFormPageState extends State<ShopFormPage> {
   final _formKey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   String _product_name = "";
   int _productamount = 0;
   int _price = 0;
-  DateTime _date_in = DateTime.now();
+  // ignore: non_constant_identifier_names
+  final DateTime _date_in = DateTime.now();
   String _categories = "";
   String _description = "";
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -165,53 +173,48 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.indigo),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Barang newProduct = Barang(
-                          productName: _product_name,
-                          productAmount: _productamount,
-                          price: _price,
-                          dateIn: _date_in,
-                          categories: _categories,
-                          description: _description,
-                        );
-                        modelList.add(newProduct);
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Produk berhasil tersimpan'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Nama: $_product_name'),
-                                    Text('Jumlah: $_productamount'),
-                                    Text('Harga: $_price'),
-                                    Text('Kategori: $_categories'),
-                                    Text('Deskripsi: $_description'),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                        _formKey.currentState!.reset();
+                          // Kirim ke Django dan tunggu respons
+                          // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                          // String userId = request.currentUserId;
+                          final response = await request.postJson(
+                          "http://127.0.0.1:8000/create-flutter/",
+                          jsonEncode(<String, String>{
+                              'name': _product_name,
+                              'price': _price.toString(),
+                              'description': _description,
+                              'amount': _productamount.toString(),
+                              'date_in': _date_in.toString(),
+                              'stock' : 'false',
+                              'categories' : _categories,
+                              // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                          }));
+                          if (response['status'] == 'success') {
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                              content: Text("Produk baru berhasil disimpan!"),
+                              ));
+                              // ignore: use_build_context_synchronously
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                              );
+                          } else {
+                              // ignore: use_build_context_synchronously
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                  content:
+                                      Text("Terdapat kesalahan, silakan coba lagi."),
+                              ));
+                          }
                       }
-                    },
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  },
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jeshuamart/screens/lihatitem.dart';
+// import 'package:jeshuamart/screens/lihatitem.dart';
+import 'package:jeshuamart/screens/list_product.dart';
 import 'package:jeshuamart/screens/menu.dart';
 import 'package:jeshuamart/screens/jeshuamart_form.dart';
 
@@ -63,17 +64,28 @@ class LeftDrawer extends StatelessWidget {
                   ));
             },
           ),
+          // ListTile(
+          //   leading: const Icon(Icons.checklist),
+          //   title: const Text('Lihat Semua Produk'),
+          //   // Bagian redirection ke ShopFormPage
+          //   onTap: () {
+          //     Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => const LihatItem(),
+          //         ));
+          //   },
+          // ),
           ListTile(
-            leading: const Icon(Icons.checklist),
-            title: const Text('Lihat Semua Produk'),
-            // Bagian redirection ke ShopFormPage
-            onTap: () {
-              Navigator.push(
+              leading: const Icon(Icons.shopping_basket),
+              title: const Text('Daftar Produk'),
+              onTap: () {
+                  // Route menu ke halaman produk
+                  Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const LihatItem(),
-                  ));
-            },
+                  MaterialPageRoute(builder: (context) => const ProductPage()),
+                  );
+              },
           ),
         ],
       ),
