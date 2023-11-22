@@ -241,7 +241,6 @@ List<Product> list_product = [];
 3. `Center`: Widget ini digunakan untuk menempatkan child widgetnya di tengah-tengah parent widget.
 4. `CircularProgressIndicator`: Widget ini menampilkan indikator loading yang berputar.
 5. `ListView.builder`: Widget ini digunakan untuk membuat daftar yang scrollable, dimana item-itemnya dibangun secara dinamis.
-Sisanya sama seperti minggu lalu.
 6. `SizedBox`: Widget ini digunakan untuk memberikan jarak antar widget.
 7. `ElevatedButton`: Widget ini menampilkan tombol yang menonjol, biasanya digunakan untuk aksi utama dalam sebuah form.
 8. `Navigator`: Digunakan untuk navigasi antar halaman dalam aplikasi.
@@ -249,6 +248,7 @@ Sisanya sama seperti minggu lalu.
 10. `TextButton`: Widget ini menampilkan tombol dengan teks, biasanya digunakan dalam dialog.
 11. `Provider`: Paket ini digunakan untuk manajemen state dan akses data melintasi widget.
 12. `CookieRequest `(dari `pbp_django_auth`): Komponen ini digunakan untuk mengelola autentikasi dan permintaan HTTP dengan cookie, khususnya dalam konteks login.
+Sisanya sama seperti minggu lalu.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
 1. Membangun app baru di django project bernama authentication
